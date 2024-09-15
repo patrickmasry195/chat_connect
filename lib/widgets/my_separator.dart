@@ -2,8 +2,8 @@ import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Separator extends StatelessWidget {
-  const Separator({super.key});
+class MySeparator extends StatelessWidget {
+  const MySeparator({super.key});
 
   @override
   Widget build(BuildContext context) {

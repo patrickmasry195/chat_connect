@@ -1,5 +1,6 @@
 import 'package:chat_connect/pages/get_started_page.dart';
 import 'package:chat_connect/pages/login_page.dart';
+import 'package:chat_connect/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +10,6 @@ void main() {
 class ChatConnect extends StatelessWidget {
   const ChatConnect({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +18,7 @@ class ChatConnect extends StatelessWidget {
       routes: {
         'GetStartedPage': (context) => const GetStartedPage(),
         'LoginPage': (context) => const LoginPage(),
+        'SignUpPage': (context) => const SignUpPage(),
       },
     );
   }

@@ -1,31 +1,27 @@
-import 'package:chat_connect/widgets/custom_button.dart';
+import 'package:chat_connect/widgets/facebook_auth_button.dart';
+import 'package:chat_connect/widgets/google_auth_button.dart';
 import 'package:flutter/material.dart';
 
 class SocialAuthButtons extends StatelessWidget {
-  const SocialAuthButtons({super.key, this.onPressed});
-  final void Function()? onPressed;
+  const SocialAuthButtons({
+    super.key,
+    this.googleAuthOnPressed,
+    this.facebookAuthOnPressed,
+  });
+  final void Function()? googleAuthOnPressed;
+  final void Function()? facebookAuthOnPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomButton(
-          onPressed: onPressed,
-          fontSize: 24,
-          iconPath: 'assets/google.png',
-          text: 'Continue with Google',
-          height: 50,
-          width: 320,
+        GoogleAuthButton(
+          googleAuthOnPressed: googleAuthOnPressed,
         ),
         const SizedBox(
           height: 20,
         ),
-        CustomButton(
-          onPressed: onPressed,
-          fontSize: 24,
-          iconPath: 'assets/facebook.png',
-          text: 'Continue with Facebook',
-          height: 50,
-          width: 320,
+        FacebookAuthButton(
+          facebookAuthOnPressed: facebookAuthOnPressed,
         ),
       ],
     );
