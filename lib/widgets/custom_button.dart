@@ -1,22 +1,19 @@
+import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
-    required this.textColor,
     required this.text,
     this.iconPath,
     this.textAlign,
     required this.fontSize,
-    required this.buttonColor,
     this.onPressed,
     required this.height,
     required this.width,
   });
 
-  final Color buttonColor;
-  final Color textColor;
   final String text;
   final String? iconPath;
   final TextAlign? textAlign;
@@ -29,7 +26,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: buttonColor,
+      color: kPrimaryColor,
       onPressed: onPressed,
       disabledColor: null,
       child: SizedBox(
@@ -54,7 +51,7 @@ class CustomButton extends StatelessWidget {
                   textAlign: textAlign,
                   style: GoogleFonts.jockeyOne(
                     fontSize: fontSize,
-                    color: textColor,
+                    color: kSecondaryColor,
                   ),
                 ),
               ),

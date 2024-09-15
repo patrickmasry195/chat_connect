@@ -32,8 +32,6 @@ class GetStartedPage extends StatelessWidget {
               flex: 1,
             ),
             CustomButton(
-              buttonColor: kPrimaryColor,
-              textColor: kSecondaryColor,
               onPressed: () {
                 Navigator.pushNamed(context, 'LoginPage');
               },
