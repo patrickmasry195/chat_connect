@@ -1,3 +1,4 @@
+import 'package:chat_connect/pages/chats_page.dart';
 import 'package:chat_connect/pages/get_started_page.dart';
 import 'package:chat_connect/pages/login_page.dart';
 import 'package:chat_connect/pages/sign_up_page.dart';
@@ -14,11 +15,12 @@ class ChatConnect extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'GetStartedPage',
+      initialRoute: 'ChatsPage',
       routes: {
         'GetStartedPage': (context) => const GetStartedPage(),
         'LoginPage': (context) => const LoginPage(),
         'SignUpPage': (context) => const SignUpPage(),
+        'ChatsPage': (context) => const ChatsPage(),
       },
     );
   }

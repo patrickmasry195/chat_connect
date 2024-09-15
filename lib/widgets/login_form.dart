@@ -38,7 +38,9 @@ class LoginForm extends StatelessWidget {
             height: 20,
           ),
           CustomButton(
-            onPressed: () {},
+            onPressed: () {
+              // Navigator.pushNamed(context, 'ChatsPage');
+            },
             textAlign: TextAlign.center,
             fontSize: 24,
             text: 'Login',
