@@ -13,33 +13,38 @@ class _ChatTileListViewState extends State<ChatTileListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return Dismissible(
-          direction: DismissDirection.endToStart,
-          background: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.red,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            direction: DismissDirection.endToStart,
+            background: Container(
+              height: 90,
+              width: 500,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.red,
+              ),
+              child: const Icon(
+                Icons.delete,
+                size: 40,
+              ),
             ),
-            child: const Icon(
-              Icons.delete,
-              size: 40,
+            key: ValueKey<int>(items[index]),
+            onDismissed: (DismissDirection direction) {
+              setState(() {
+                items.removeAt(index);
+              });
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: ChatTile(),
             ),
-          ),
-          key: ValueKey<int>(items[index]),
-          onDismissed: (DismissDirection direction) {
-            setState(() {
-              items.removeAt(index);
-            });
-          },
-          child: const Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
-            child: ChatTile(),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

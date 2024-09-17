@@ -10,9 +10,9 @@ class ChatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
       height: 90,
       width: 500,
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: kThirdColor,
         borderRadius: BorderRadius.circular(12),
@@ -28,10 +28,10 @@ class ChatTile extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Maxwell Throne',

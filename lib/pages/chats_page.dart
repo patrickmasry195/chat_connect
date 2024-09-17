@@ -1,4 +1,5 @@
 import 'package:chat_connect/constants.dart';
+import 'package:chat_connect/widgets/add_people.dart';
 import 'package:chat_connect/widgets/chat_tile_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,12 +26,17 @@ class _ChatsPageState extends State<ChatsPage> {
         ),
       ),
       drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: ChatTileListView(),
-      ),
+      body: const ChatTileListView(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            builder: (context) {
+              return const AddPeople();
+            },
+          );
+        },
         shape: const CircleBorder(),
         backgroundColor: kPrimaryColor,
         child: const Icon(
@@ -41,3 +47,4 @@ class _ChatsPageState extends State<ChatsPage> {
     );
   }
 }
+

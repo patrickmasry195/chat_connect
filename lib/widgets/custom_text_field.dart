@@ -5,16 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
-    required this.preIcon,
+    this.preIcon,
     required this.hintText,
     this.suffixIcon,
     required this.keyboardType,
+    this.validator,
   });
 
-  final IconData preIcon;
+  final IconData? preIcon;
   final IconData? suffixIcon;
   final String hintText;
   final TextInputType keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextFormField(
+        validator: validator,
         keyboardType: keyboardType,
         cursorColor: kSecondaryColor,
         decoration: InputDecoration(
