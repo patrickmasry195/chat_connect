@@ -1,5 +1,5 @@
 import 'package:chat_connect/constants.dart';
-import 'package:chat_connect/widgets/forms/add_people_form.dart';
+import 'package:chat_connect/widgets/add_people_form.dart';
 import 'package:flutter/material.dart';
 
 class AddPeople extends StatelessWidget {

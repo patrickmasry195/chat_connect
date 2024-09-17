@@ -1,21 +1,21 @@
-import 'package:chat_connect/widgets/common/custom_app_bar.dart';
-import 'package:chat_connect/widgets/forms/login_form.dart';
-import 'package:chat_connect/widgets/common/my_separator.dart';
-import 'package:chat_connect/widgets/buttons/social_auth_buttons.dart';
+import 'package:chat_connect/widgets/custom_app_bar.dart';
+import 'package:chat_connect/widgets/my_separator.dart';
+import 'package:chat_connect/widgets/sign_up_form.dart';
+import 'package:chat_connect/widgets/social_auth_buttons.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        icon: Icons.arrow_back,
-        text: 'Login to ChatConnect',
+        text: 'Sign up to ChatConnect',
         onPressed: () {
-          Navigator.pushNamed(context, 'GetStartedPage');
+          Navigator.pushNamed(context, 'LoginPage');
         },
+        icon: Icons.arrow_back,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,19 +24,16 @@ class LoginPage extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 18),
               child: Center(
-                child: LoginForm(),
+                child: SignUpForm(),
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
             const MySeparator(),
             const SizedBox(
               height: 20,
             ),
             SocialAuthButtons(
-              facebookAuthOnPressed: () {},
               googleAuthOnPressed: () {},
+              facebookAuthOnPressed: () {},
             ),
           ],
         ),
