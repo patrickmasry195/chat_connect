@@ -1,7 +1,7 @@
-import 'package:chat_connect/pages/chats_page.dart';
-import 'package:chat_connect/pages/get_started_page.dart';
-import 'package:chat_connect/pages/login_page.dart';
-import 'package:chat_connect/pages/sign_up_page.dart';
+import 'package:chat_connect/pages/home/chats_page.dart';
+import 'package:chat_connect/pages/authentication/get_started_page.dart';
+import 'package:chat_connect/pages/authentication/login_page.dart';
+import 'package:chat_connect/pages/authentication/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

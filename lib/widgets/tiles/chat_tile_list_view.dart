@@ -1,4 +1,4 @@
-import 'package:chat_connect/widgets/chat_tile.dart';
+import 'package:chat_connect/widgets/tiles/chat_tile.dart';
 import 'package:flutter/material.dart';
 
 class ChatTileListView extends StatefulWidget {

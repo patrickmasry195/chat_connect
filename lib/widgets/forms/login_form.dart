@@ -1,7 +1,7 @@
-import 'package:chat_connect/widgets/custom_background_form.dart';
-import 'package:chat_connect/widgets/custom_button.dart';
-import 'package:chat_connect/widgets/custom_text_field.dart';
-import 'package:chat_connect/widgets/sign_up_suggestion.dart';
+import 'package:chat_connect/widgets/layout/custom_background_form.dart';
+import 'package:chat_connect/widgets/buttons/custom_button.dart';
+import 'package:chat_connect/widgets/text_fields/custom_text_field.dart';
+import 'package:chat_connect/widgets/common/sign_up_suggestion.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
