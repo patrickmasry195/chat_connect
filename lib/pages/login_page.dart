@@ -1,3 +1,4 @@
+import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/custom_app_bar.dart';
 import 'package:chat_connect/widgets/login_form.dart';
 import 'package:chat_connect/widgets/my_separator.dart';
@@ -12,7 +13,8 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         icon: Icons.arrow_back,
-        text: 'Login to ChatConnect',
+        iconTheme: const IconThemeData(color: kSecondaryColor),
+        title: 'Login to ChatConnect',
         onPressed: () {
           Navigator.pushNamed(context, 'GetStartedPage');
         },

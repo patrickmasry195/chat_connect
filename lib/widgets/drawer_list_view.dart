@@ -1,4 +1,6 @@
 import 'package:chat_connect/constants.dart';
+import 'package:chat_connect/widgets/custom_user_email.dart';
+import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -15,32 +17,19 @@ class _DrawerListViewState extends State<DrawerListView> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        DrawerHeader(
+        const DrawerHeader(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 backgroundImage: AssetImage('assets/avatar.jpg'),
                 maxRadius: 30,
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
-              Text(
-                'Maxwell Thorne',
-                style: GoogleFonts.jockeyOne(
-                  color: kSecondaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'maxwell@gmail.com',
-                style: GoogleFonts.jockeyOne(
-                  color: kFourthColor,
-                  fontSize: 15,
-                ),
-              ),
+              CustomUserName(name: 'Maxwell Thorne', fontSize: 20),
+              CustomUserEmail(email: 'maxwell@gmail.com', fontSize: 15),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/custom_app_bar.dart';
 import 'package:chat_connect/widgets/my_separator.dart';
 import 'package:chat_connect/widgets/sign_up_form.dart';
@@ -11,11 +12,12 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        text: 'Sign up to ChatConnect',
+        title: 'Sign up to ChatConnect',
         onPressed: () {
           Navigator.pushNamed(context, 'LoginPage');
         },
         icon: Icons.arrow_back,
+        iconTheme: const IconThemeData(color: kSecondaryColor),
       ),
       body: SingleChildScrollView(
         child: Column(

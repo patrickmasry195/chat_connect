@@ -38,9 +38,13 @@ class _ChatTileListViewState extends State<ChatTileListView> {
                 items.removeAt(index);
               });
             },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: ChatTile(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: ChatTile(
+                onTap: () {
+                  Navigator.pushNamed(context, 'ChatPage');
+                },
+              ),
             ),
           );
         },

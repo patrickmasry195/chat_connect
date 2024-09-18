@@ -5,30 +5,28 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    required this.text,
+    required this.title,
     this.onPressed,
     this.icon,
+    this.iconTheme, this.leading,
   });
 
-  final String text;
+  final String title;
   final Function()? onPressed;
   final IconData? icon;
+  final IconThemeData? iconTheme;
+  final Widget? leading;
 
   @override
   Size get preferredSize => const Size(double.maxFinite, 56);
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        onPressed: onPressed,
-        icon: Icon(
-          icon,
-          color: kSecondaryColor,
-        ),
-      ),
+      iconTheme: iconTheme,
+      leading: leading,
       backgroundColor: kPrimaryColor,
       title: Text(
-        text,
+        title,
         style: GoogleFonts.jockeyOne(
           color: kSecondaryColor,
         ),
