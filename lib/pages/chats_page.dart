@@ -35,9 +35,7 @@ class _ChatsPageState extends State<ChatsPage> {
       drawer: const Drawer(
         child: DrawerListView(),
       ),
-      body:  ChatTileListView(
- 
-      ),
+      body: const ChatTileListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
