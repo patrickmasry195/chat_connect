@@ -43,7 +43,9 @@ class LoginPage extends StatelessWidget {
               height: 20,
             ),
             SocialAuthButtons(
-              facebookAuthOnPressed: () {},
+              facebookAuthOnPressed: () {
+                Navigator.pushNamed(context, 'ChatsPage');
+              },
               googleAuthOnPressed: () {},
             ),
           ],
