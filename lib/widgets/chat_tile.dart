@@ -1,6 +1,5 @@
 import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatTile extends StatelessWidget {
   const ChatTile({
@@ -22,15 +21,15 @@ class ChatTile extends StatelessWidget {
           color: kThirdColor,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
+        child: const Row(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               maxRadius: 30,
               backgroundImage: AssetImage(
                 'assets/avatar.jpg',
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: 20,
             ),
             Expanded(
@@ -40,10 +39,11 @@ class ChatTile extends StatelessWidget {
                 children: [
                   Text(
                     'Maxwell Throne',
-                    style: GoogleFonts.jockeyOne(
-                        color: kSecondaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(
                     width: 200,
@@ -51,7 +51,7 @@ class ChatTile extends StatelessWidget {
                       'Let\'s grab lunch tomorrow! I\'ve missed our chats.hbvfbhbvhfvbdbvdvbdhkj',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.jockeyOne(
+                      style: TextStyle(
                         color: kHintColor,
                         fontSize: 15,
                       ),
@@ -61,10 +61,10 @@ class ChatTile extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40, left: 15),
+              padding: EdgeInsets.only(top: 40, left: 15),
               child: Text(
                 '12:10pm',
-                style: GoogleFonts.jockeyOne(
+                style: TextStyle(
                   color: kSecondaryColor,
                 ),
               ),

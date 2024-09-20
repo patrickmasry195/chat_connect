@@ -1,5 +1,4 @@
 import 'package:chat_connect/constants.dart';
-import 'package:chat_connect/widgets/custom_app_bar.dart';
 import 'package:chat_connect/widgets/login_form.dart';
 import 'package:chat_connect/widgets/my_separator.dart';
 import 'package:chat_connect/widgets/social_auth_buttons.dart';
@@ -11,13 +10,20 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        icon: Icons.arrow_back,
-        iconTheme: const IconThemeData(color: kSecondaryColor),
-        title: 'Login to ChatConnect',
-        onPressed: () {
-          Navigator.pushNamed(context, 'GetStartedPage');
-        },
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, 'GetStartedPage');
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: kSecondaryColor,
+          ),
+        ),
+        title: const Text(
+          'Login to ChatConnect',
+          style: TextStyle(color: kSecondaryColor),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

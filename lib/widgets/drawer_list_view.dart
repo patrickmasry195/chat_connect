@@ -2,7 +2,6 @@ import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class DrawerListView extends StatefulWidget {
@@ -39,9 +38,9 @@ class _DrawerListViewState extends State<DrawerListView> {
             color: kSecondaryColor,
             size: 35,
           ),
-          title: Text(
+          title: const Text(
             'Chats',
-            style: GoogleFonts.jockeyOne(
+            style: TextStyle(
               color: kSecondaryColor,
               fontSize: 25,
             ),
@@ -58,9 +57,9 @@ class _DrawerListViewState extends State<DrawerListView> {
             color: kSecondaryColor,
             size: 35,
           ),
-          title: Text(
+          title: const Text(
             'Settings & Account',
-            style: GoogleFonts.jockeyOne(
+            style: TextStyle(
               color: kSecondaryColor,
               fontSize: 25,
             ),

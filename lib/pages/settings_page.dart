@@ -1,11 +1,9 @@
 import 'package:chat_connect/constants.dart';
-import 'package:chat_connect/widgets/custom_app_bar.dart';
 import 'package:chat_connect/widgets/custom_button.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:chat_connect/widgets/drawer_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -13,8 +11,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Settings',
+      appBar: AppBar(
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -27,6 +24,12 @@ class SettingsPage extends StatelessWidget {
               ),
             );
           },
+        ),
+        title: const Text(
+          'Settings',
+          style: TextStyle(
+            color: kSecondaryColor,
+          ),
         ),
       ),
       drawer: const Drawer(
@@ -84,9 +87,9 @@ class SettingsPage extends StatelessWidget {
                 size: 40,
                 color: kSecondaryColor,
               ),
-              title: Text(
+              title: const Text(
                 'Dark mode',
-                style: GoogleFonts.jockeyOne(
+                style: TextStyle(
                   color: kSecondaryColor,
                   fontSize: 30,
                 ),
@@ -99,9 +102,9 @@ class SettingsPage extends StatelessWidget {
                 size: 40,
                 color: Colors.red,
               ),
-              title: Text(
+              title: const Text(
                 'Delete account',
-                style: GoogleFonts.jockeyOne(
+                style: TextStyle(
                   color: Colors.red,
                   fontSize: 30,
                 ),

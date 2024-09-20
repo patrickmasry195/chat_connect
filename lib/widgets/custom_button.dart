@@ -1,6 +1,5 @@
 import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -49,7 +48,7 @@ class CustomButton extends StatelessWidget {
                 child: Text(
                   text,
                   textAlign: textAlign,
-                  style: GoogleFonts.jockeyOne(
+                  style: TextStyle(
                     fontSize: fontSize,
                     color: kSecondaryColor,
                   ),

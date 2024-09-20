@@ -1,6 +1,5 @@
 import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/add_people.dart';
-import 'package:chat_connect/widgets/custom_app_bar.dart';
 import 'package:chat_connect/widgets/drawer_list_view.dart';
 import 'package:chat_connect/widgets/chat_tile_list_view.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,7 @@ class _ChatsPageState extends State<ChatsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Chats',
+      appBar: AppBar(
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -30,6 +28,12 @@ class _ChatsPageState extends State<ChatsPage> {
               ),
             );
           },
+        ),
+        title: const Text(
+          'Chats',
+          style: TextStyle(
+            color: kSecondaryColor,
+          ),
         ),
       ),
       drawer: const Drawer(

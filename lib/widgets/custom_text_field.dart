@@ -1,6 +1,5 @@
 import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -56,7 +55,7 @@ class CustomTextField extends StatelessWidget {
           ),
           border: const OutlineInputBorder(),
           hintText: hintText,
-          hintStyle: GoogleFonts.jockeyOne(
+          hintStyle: const TextStyle(
             fontSize: 19,
             color: kHintColor,
           ),

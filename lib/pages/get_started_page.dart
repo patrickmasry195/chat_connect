@@ -1,7 +1,6 @@
 import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -21,9 +20,9 @@ class GetStartedPage extends StatelessWidget {
               width: 318,
               height: 322,
             ),
-            Text(
+            const Text(
               'Welcome to ChatConnect',
-              style: GoogleFonts.jockeyOne(
+              style: TextStyle(
                 fontSize: 30,
                 color: kSecondaryColor,
               ),

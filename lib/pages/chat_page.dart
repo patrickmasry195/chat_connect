@@ -3,7 +3,6 @@ import 'package:chat_connect/widgets/chat_bubble.dart';
 import 'package:chat_connect/widgets/chat_bubble_for_friend.dart';
 import 'package:chat_connect/widgets/chat_input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -17,24 +16,27 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, 'ChatsPage');
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: kSecondaryColor,
-            )),
-        title: Row(
+          onPressed: () {
+            Navigator.pushNamed(context, 'ChatsPage');
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: kSecondaryColor,
+          ),
+        ),
+        title: const Row(
           children: [
-            const CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.jpg')),
-            const SizedBox(
+            CircleAvatar(backgroundImage: AssetImage('assets/avatar.jpg')),
+            SizedBox(
               width: 20,
             ),
-            Text('Maxwell Thorne',
-                style: GoogleFonts.jockeyOne(color: kSecondaryColor)),
+            Text(
+              'Maxwell Thorne',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
       ),
@@ -50,10 +52,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 25,
-              vertical: 30
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 30),
             child: ChatInputField(),
           ),
         ],
