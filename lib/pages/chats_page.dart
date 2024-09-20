@@ -1,7 +1,7 @@
 import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/add_people.dart';
-import 'package:chat_connect/widgets/drawer_list_view.dart';
-import 'package:chat_connect/widgets/chat_tile_list_view.dart';
+import 'package:chat_connect/widgets/list_views/drawer_list_view.dart';
+import 'package:chat_connect/widgets/list_views/chat_tile_list_view.dart';
 import 'package:flutter/material.dart';
 
 class ChatsPage extends StatefulWidget {

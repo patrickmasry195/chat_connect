@@ -1,8 +1,8 @@
 import 'package:chat_connect/constants.dart';
-import 'package:chat_connect/widgets/custom_button.dart';
+import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
-import 'package:chat_connect/widgets/drawer_list_view.dart';
+import 'package:chat_connect/widgets/list_views/drawer_list_view.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {

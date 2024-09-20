@@ -1,7 +1,7 @@
 import 'package:chat_connect/constants.dart';
-import 'package:chat_connect/widgets/chat_bubble.dart';
-import 'package:chat_connect/widgets/chat_bubble_for_friend.dart';
-import 'package:chat_connect/widgets/chat_input_field.dart';
+import 'package:chat_connect/widgets/conversation_bubbles/chat_bubble.dart';
+import 'package:chat_connect/widgets/conversation_bubbles/chat_bubble_for_friend.dart';
+import 'package:chat_connect/widgets/input_fields/chat_input_field.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:chat_connect/widgets/custom_button.dart';
-import 'package:chat_connect/widgets/custom_text_field.dart';
+import 'package:chat_connect/widgets/buttons/custom_button.dart';
+import 'package:chat_connect/widgets/input_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class AddPeopleForm extends StatefulWidget {

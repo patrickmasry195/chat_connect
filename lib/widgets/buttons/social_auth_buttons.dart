@@ -1,5 +1,5 @@
-import 'package:chat_connect/widgets/facebook_auth_button.dart';
-import 'package:chat_connect/widgets/google_auth_button.dart';
+import 'package:chat_connect/widgets/buttons/facebook_auth_button.dart';
+import 'package:chat_connect/widgets/buttons/google_auth_button.dart';
 import 'package:flutter/material.dart';
 
 class SocialAuthButtons extends StatelessWidget {

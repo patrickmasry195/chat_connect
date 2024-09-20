@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class CustomBackGroundForm extends StatelessWidget {
   const CustomBackGroundForm({
     super.key,
-    required this.column,
     required this.height,
     required this.width,
+    this.child,
   });
-  final Column column;
+  final Widget? child;
   final double height;
   final double width;
 
@@ -21,7 +21,7 @@ class CustomBackGroundForm extends StatelessWidget {
         color: kSecondaryColor,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: column,
+      child: child,
     );
   }
 }

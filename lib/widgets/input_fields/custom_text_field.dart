@@ -8,37 +8,35 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.suffixIcon,
     required this.keyboardType,
+    this.obscureText = false,
     this.validator,
   });
 
   final IconData? preIcon;
-  final IconData? suffixIcon;
   final String hintText;
   final TextInputType keyboardType;
+  final bool obscureText;
+  final Widget? suffixIcon;
   final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 300,
-      decoration: BoxDecoration(
-        color: kThirdColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
       child: TextFormField(
         validator: validator,
+        obscureText: obscureText,
         keyboardType: keyboardType,
         cursorColor: kSecondaryColor,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: kThirdColor,
           alignLabelWithHint: true,
           prefixIcon: Icon(
             preIcon,
             color: kHintColor,
           ),
-          suffixIcon: Icon(
-            suffixIcon,
-            color: kHintColor,
-          ),
+          suffixIcon: suffixIcon,
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: kPrimaryColor,
@@ -53,7 +51,9 @@ class CustomTextField extends StatelessWidget {
               width: 3,
             ),
           ),
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 19,
