@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: 300,
       child: TextFormField(
+        style: const TextStyle(color: Colors.black),
         validator: validator,
         obscureText: obscureText,
         keyboardType: keyboardType,

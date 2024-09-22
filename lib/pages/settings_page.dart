@@ -1,12 +1,27 @@
+import 'package:chat_connect/bloc/app_theme_bloc.dart';
 import 'package:chat_connect/constants.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:chat_connect/widgets/list_views/drawer_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool isDarkMode = false;
+
+  @override
+  void initState() {
+    isDarkMode = BlocProvider.of<AppThemeBloc>(context).state is AppDarkTheme;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,15 +96,24 @@ class SettingsPage extends StatelessWidget {
               height: 30,
             ),
             ListTile(
-              onTap: () {},
-              leading: const Icon(
-                Icons.dark_mode,
+              onTap: () {
+                setState(() {
+                  isDarkMode = !isDarkMode;
+                  if (isDarkMode) {
+                    BlocProvider.of<AppThemeBloc>(context).add(DarkEvent());
+                  } else {
+                    BlocProvider.of<AppThemeBloc>(context).add(LightEvent());
+                  }
+                });
+              },
+              leading: Icon(
+                isDarkMode ? Icons.light_mode : Icons.dark_mode,
                 size: 40,
                 color: kSecondaryColor,
               ),
-              title: const Text(
-                'Dark mode',
-                style: TextStyle(
+              title: Text(
+                isDarkMode ? 'Light mode' : 'Dark mode',
+                style: const TextStyle(
                   color: kSecondaryColor,
                   fontSize: 30,
                 ),

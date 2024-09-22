@@ -1,7 +1,9 @@
+import 'package:chat_connect/bloc/app_theme_bloc.dart';
 import 'package:chat_connect/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChatTile extends StatelessWidget {
+class ChatTile extends StatefulWidget {
   const ChatTile({
     super.key,
     required this.onTap,
@@ -10,15 +12,27 @@ class ChatTile extends StatelessWidget {
   final void Function()? onTap;
 
   @override
+  State<ChatTile> createState() => _ChatTileState();
+}
+
+class _ChatTileState extends State<ChatTile> {
+  bool isDarkMode = false;
+  @override
+  void initState() {
+    isDarkMode = BlocProvider.of<AppThemeBloc>(context).state is AppDarkTheme;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         height: 90,
         width: 500,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: kThirdColor,
+          color: isDarkMode ? kChatTileDarkModeColor : kThirdColor,
           borderRadius: BorderRadius.circular(12),
         ),
         child: const Row(

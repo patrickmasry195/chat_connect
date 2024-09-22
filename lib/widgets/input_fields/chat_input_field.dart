@@ -13,6 +13,8 @@ class ChatInputField extends StatelessWidget {
         SizedBox(
           width: 250,
           child: TextField(
+            cursorColor: kSecondaryColor,
+            style: const TextStyle(color: Colors.black),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 10,
