@@ -1,4 +1,4 @@
-import 'package:chat_connect/regex_validator.dart';
+import 'package:chat_connect/helpers/regex_validator.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:flutter/material.dart';

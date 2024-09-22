@@ -1,4 +1,4 @@
-import 'package:chat_connect/constants.dart';
+import 'package:chat_connect/helpers/constants.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 

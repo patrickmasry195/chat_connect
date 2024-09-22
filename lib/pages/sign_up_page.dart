@@ -1,4 +1,4 @@
-import 'package:chat_connect/constants.dart';
+import 'package:chat_connect/helpers/constants.dart';
 import 'package:chat_connect/widgets/components/my_separator.dart';
 import 'package:chat_connect/widgets/forms/sign_up_form.dart';
 import 'package:chat_connect/widgets/buttons/social_auth_buttons.dart';

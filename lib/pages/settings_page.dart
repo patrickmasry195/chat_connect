@@ -1,5 +1,5 @@
 import 'package:chat_connect/bloc/app_theme_bloc.dart';
-import 'package:chat_connect/constants.dart';
+import 'package:chat_connect/helpers/constants.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
