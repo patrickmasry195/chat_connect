@@ -6,11 +6,14 @@ class CustomNameField extends StatelessWidget {
   const CustomNameField({
     super.key,
     this.nameValidator,
+    this.nameController,
   });
   final String? Function(String?)? nameValidator;
+  final TextEditingController? nameController;
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      controller: nameController,
       validator: nameValidator,
       preIcon: Symbols.edit,
       hintText: 'Enter Your Name',

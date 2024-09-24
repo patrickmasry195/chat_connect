@@ -6,9 +6,11 @@ class CustomPasswordField extends StatefulWidget {
   const CustomPasswordField({
     super.key,
     this.passwordValidator,
+    this.passwordController,
   });
 
   final String? Function(String?)? passwordValidator;
+  final TextEditingController? passwordController;
   @override
   State<CustomPasswordField> createState() => _CustomPasswordFieldState();
 }
@@ -19,6 +21,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      controller: widget.passwordController,
       validator: widget.passwordValidator,
       obscureText: isObscured,
       hintText: 'Enter Password',

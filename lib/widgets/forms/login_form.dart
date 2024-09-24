@@ -1,9 +1,11 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
+import 'package:chat_connect/services/firebase_auth_services.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
 import 'package:chat_connect/widgets/sign_up_suggestion.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -16,9 +18,19 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final formKey = GlobalKey<FormState>();
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
 
-  String? email, password;
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +38,14 @@ class _LoginFormState extends State<LoginForm> {
       height: 400,
       width: 350,
       child: Form(
-        key: formKey,
+        key: _formKey,
         child: Column(
           children: [
             const SizedBox(
               height: 40,
             ),
             CustomEmailField(
+              emailController: _emailController,
               emailValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -46,6 +59,7 @@ class _LoginFormState extends State<LoginForm> {
               height: 20,
             ),
             CustomPasswordField(
+              passwordController: _passwordController,
               passwordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -60,9 +74,11 @@ class _LoginFormState extends State<LoginForm> {
             ),
             CustomButton(
               onPressed: () {
-                if (formKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
+                  _signIn();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Form is valid!')),
+                    /* edit and use snack bar from helper*/
+                    const SnackBar(content: Text('Signed in successfully')),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -89,5 +105,19 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  void _signIn() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User is successfully signed in");
+      Navigator.pushNamed(context, "ChatsPage");
+    } else {
+      print("Some error happened");
+    }
   }
 }

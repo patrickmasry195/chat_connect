@@ -6,8 +6,10 @@ class CustomConfirmPasswordField extends StatefulWidget {
   const CustomConfirmPasswordField({
     super.key,
     this.confirmPasswordValidator,
+    this.confirmPasswordController,
   });
   final String? Function(String?)? confirmPasswordValidator;
+  final TextEditingController? confirmPasswordController;
   @override
   State<CustomConfirmPasswordField> createState() =>
       _CustomConfirmPasswordFieldState();
@@ -20,6 +22,7 @@ class _CustomConfirmPasswordFieldState
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      controller: widget.confirmPasswordController,
       validator: widget.confirmPasswordValidator,
       obscureText: isObscured,
       preIcon: Symbols.check,

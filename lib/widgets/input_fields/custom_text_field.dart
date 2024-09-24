@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     required this.keyboardType,
     this.obscureText = false,
     this.validator,
+    this.controller,
   });
 
   final IconData? preIcon;
@@ -18,12 +19,14 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 300,
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(color: Colors.black),
         validator: validator,
         obscureText: obscureText,

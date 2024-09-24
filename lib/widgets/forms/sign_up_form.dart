@@ -1,10 +1,12 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
+import 'package:chat_connect/services/firebase_auth_services.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/input_fields/custom_confirm_password_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_name_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -17,8 +19,21 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final formKey = GlobalKey<FormState>();
-  String? name, email, password;
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
       height: 420,
       width: 350,
       child: Form(
-        key: formKey,
+        key: _formKey,
         child: ListView(
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(
@@ -38,6 +53,7 @@ class _SignUpFormState extends State<SignUpForm> {
               height: 20,
             ),
             CustomNameField(
+              nameController: _userNameController,
               nameValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your name';
@@ -51,6 +67,7 @@ class _SignUpFormState extends State<SignUpForm> {
               height: 20,
             ),
             CustomEmailField(
+              emailController: _emailController,
               emailValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -64,6 +81,7 @@ class _SignUpFormState extends State<SignUpForm> {
               height: 20,
             ),
             CustomPasswordField(
+              passwordController: _passwordController,
               passwordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a password';
@@ -80,8 +98,8 @@ class _SignUpFormState extends State<SignUpForm> {
               confirmPasswordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a password';
-                } else if (value != password) {
-                  return 'Password don\'t match';
+                } else if (value != _passwordController.text) {
+                  return 'Passwords don\'t match';
                 }
                 return null;
               },
@@ -91,10 +109,11 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             CustomButton(
               onPressed: () {
-                if (formKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Form is valid!')),
+                    const SnackBar(content: Text('Signed up successfully')),
                   );
+                  _signUp();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -107,10 +126,25 @@ class _SignUpFormState extends State<SignUpForm> {
               fontSize: 24,
               height: 50,
               width: 260,
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void _signUp() async {
+    String userName = _userNameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      print("User is successfully created");
+      Navigator.pushNamed(context, "ChatsPage");
+    } else {
+      print("Some error happened");
+    }
   }
 }

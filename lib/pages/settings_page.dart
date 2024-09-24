@@ -4,6 +4,7 @@ import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/custom_user_email.dart';
 import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:chat_connect/widgets/list_views/drawer_list_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -120,7 +121,45 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text(
+                          "Delete your Account",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        content: const Text(
+                          '''If you select Delete we will delete your account on our server.\nYour chats will also be deleted and you won't be able to retrieve it.''',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(
+                                    color: kSecondaryColor, fontSize: 18),
+                              )),
+                          TextButton(
+                            onPressed: () {
+                              FirebaseAuth.instance.currentUser!.delete();
+                              Navigator.pushNamed(context, 'GetStartedPage');
+                            },
+                            child: const Text(
+                              "Delete",
+                              style: TextStyle(color: Colors.red, fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      );
+                    });
+              },
               leading: const Icon(
                 Icons.delete,
                 size: 40,
@@ -139,7 +178,8 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, 'GetStartedPage');
+                FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, 'LoginPage');
               },
               text: 'Logout',
               fontSize: 25,

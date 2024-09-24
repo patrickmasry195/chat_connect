@@ -1,14 +1,20 @@
 import 'package:chat_connect/bloc/app_theme_bloc.dart';
+import 'package:chat_connect/firebase_options.dart';
 import 'package:chat_connect/pages/chat_page.dart';
 import 'package:chat_connect/pages/chats_page.dart';
 import 'package:chat_connect/pages/get_started_page.dart';
 import 'package:chat_connect/pages/login_page.dart';
 import 'package:chat_connect/pages/sign_up_page.dart';
 import 'package:chat_connect/pages/settings_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ChatConnect());
 }
 

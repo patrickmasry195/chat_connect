@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "653519503986",
+    "project_id": "chat-connect-43df5",
+    "storage_bucket": "chat-connect-43df5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653519503986:android:ba3ba65bcc542c62feb8eb",
+        "android_client_info": {
+          "package_name": "com.example.chat_connect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVtscGCPokBddDbhB1pQRL9vx-jrkQBxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

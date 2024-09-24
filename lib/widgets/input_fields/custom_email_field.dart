@@ -6,14 +6,17 @@ class CustomEmailField extends StatelessWidget {
     super.key,
     this.onChangedEmail,
     this.emailValidator,
+    this.emailController,
   });
 
   final void Function(String)? onChangedEmail;
   final String? Function(String?)? emailValidator;
+  final TextEditingController? emailController;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      controller: emailController,
       validator: emailValidator,
       preIcon: Icons.email,
       hintText: 'Enter Email',
