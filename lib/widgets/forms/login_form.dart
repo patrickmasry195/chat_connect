@@ -1,11 +1,11 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
+import 'package:chat_connect/helpers/show_snack_bar.dart';
 import 'package:chat_connect/services/firebase_auth_services.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
 import 'package:chat_connect/widgets/sign_up_suggestion.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -18,12 +18,11 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final FirebaseAuthServices _auth = FirebaseAuthServices();
-
   final _formKey = GlobalKey<FormState>();
-
+  String? _errorMessage;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
@@ -74,18 +73,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             CustomButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _signIn();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    /* edit and use snack bar from helper*/
-                    const SnackBar(content: Text('Signed in successfully')),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Please fix the errors in the form.')),
-                  );
-                }
+                _login();
               },
               textAlign: TextAlign.center,
               fontSize: 24,
@@ -107,17 +95,25 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void _signIn() async {
-    String email = _emailController.text;
-    String password = _passwordController.text;
+  void _login() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    if (_formKey.currentState!.validate()) {
+      String? error =
+          await _authService.signInWithEmailPassword(email, password);
 
-    if (user != null) {
-      print("User is successfully signed in");
-      Navigator.pushNamed(context, "ChatsPage");
+      if (error == null) {
+        Navigator.pushNamed(context, 'ChatsPage');
+        showSnackBar(context, 'Signed in successfully', Colors.green);
+      } else {
+        setState(() {
+          _errorMessage = error;
+        });
+        showSnackBar(context, _errorMessage!, Colors.red);
+      }
     } else {
-      print("Some error happened");
+      showSnackBar(context, 'Please fill the required fields', Colors.red);
     }
   }
 }

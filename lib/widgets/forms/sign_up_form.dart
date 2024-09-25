@@ -1,4 +1,5 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
+import 'package:chat_connect/models/user_model.dart';
 import 'package:chat_connect/services/firebase_auth_services.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
@@ -8,6 +9,8 @@ import 'package:chat_connect/widgets/input_fields/custom_name_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../helpers/show_snack_bar.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -19,13 +22,12 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final FirebaseAuthServices _auth = FirebaseAuthServices();
-
   final _formKey = GlobalKey<FormState>();
-
+  String? _errorMessage;
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
@@ -109,17 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             CustomButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Signed up successfully')),
-                  );
-                  _signUp();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Please fix the errors in the form.')),
-                  );
-                }
+                _register();
               },
               textAlign: TextAlign.center,
               text: 'Create an account',
@@ -133,18 +125,31 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  void _signUp() async {
-    String userName = _userNameController.text;
-    String email = _emailController.text;
-    String password = _passwordController.text;
+  void _register() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+    String userName = _userNameController.text.trim();
 
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    if (_formKey.currentState!.validate()) {
+      UserModel newUser = UserModel(
+        email: email,
+        password: password,
+        userName: userName,
+      );
 
-    if (user != null) {
-      print("User is successfully created");
-      Navigator.pushNamed(context, "ChatsPage");
+      User? user = await _authService.signUpWithEmailPassword(newUser);
+
+      if (user != null) {
+        Navigator.pushNamed(context, 'ChatsPage');
+        showSnackBar(context, 'Registered successfully', Colors.green);
+      } else {
+        setState(() {
+          _errorMessage = 'Registration failed. Please try again.';
+        });
+        showSnackBar(context, _errorMessage!, Colors.red);
+      }
     } else {
-      print("Some error happened");
+      showSnackBar(context, 'Please fill in all required fields', Colors.red);
     }
   }
 }
