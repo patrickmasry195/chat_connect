@@ -1,9 +1,12 @@
 import 'package:chat_connect/helpers/constants.dart';
+import 'package:chat_connect/pages/login_page.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
+
+  static String id = 'GetStartedPage';
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class GetStartedPage extends StatelessWidget {
             ),
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, 'LoginPage');
+                Navigator.pushNamed(context, LoginPage.id);
               },
               text: 'Get Started',
               height: 50,

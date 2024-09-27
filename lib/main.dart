@@ -6,6 +6,7 @@ import 'package:chat_connect/pages/get_started_page.dart';
 import 'package:chat_connect/pages/login_page.dart';
 import 'package:chat_connect/pages/sign_up_page.dart';
 import 'package:chat_connect/pages/settings_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,14 +41,23 @@ class ChatConnect extends StatelessWidget {
           return MaterialApp(
             theme: theme,
             debugShowCheckedModeBanner: false,
-            initialRoute: 'GetStartedPage',
+            home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return const ChatsPage();
+                } else {
+                  return const GetStartedPage();
+                }
+              },
+            ),
             routes: {
-              'GetStartedPage': (context) => const GetStartedPage(),
-              'LoginPage': (context) => const LoginPage(),
-              'SignUpPage': (context) => const SignUpPage(),
-              'ChatsPage': (context) => const ChatsPage(),
-              'SettingsPage': (context) => const SettingsPage(),
-              'ChatPage': (context) => const ChatPage(),
+              GetStartedPage.id: (context) => const GetStartedPage(),
+              LoginPage.id: (context) => const LoginPage(),
+              SignUpPage.id: (context) => const SignUpPage(),
+              ChatsPage.id: (context) => const ChatsPage(),
+              SettingsPage.id: (context) => const SettingsPage(),
+              ChatPage.id: (context) => const ChatPage(),
             },
           );
         },

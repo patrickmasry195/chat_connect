@@ -1,11 +1,11 @@
 import 'package:chat_connect/helpers/constants.dart';
-import 'package:chat_connect/widgets/components/my_separator.dart';
 import 'package:chat_connect/widgets/forms/sign_up_form.dart';
-import 'package:chat_connect/widgets/buttons/social_auth_buttons.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  static String id = 'SignUpPage';
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -30,23 +30,17 @@ class _SignUpPageState extends State<SignUpPage> {
           style: TextStyle(color: kSecondaryColor),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 18),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 18,
+              ),
               child: Center(
                 child: SignUpForm(),
               ),
-            ),
-            const MySeparator(),
-            const SizedBox(
-              height: 20,
-            ),
-            SocialAuthButtons(
-              googleAuthOnPressed: () {},
-              facebookAuthOnPressed: () {},
             ),
           ],
         ),

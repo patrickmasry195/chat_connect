@@ -7,3 +7,6 @@ const kFourthColor = Color(0xff66999e);
 const kHintColor = Color(0xff666666);
 const kChatBubbleColor = Color(0xff123033);
 const kChatTileDarkModeColor = Color(0xffDBB68F);
+
+const kWarningMessage =
+    '''If you select Delete we will delete your account on our server.\nYour chats will also be deleted and you won't be able to retrieve it.''';

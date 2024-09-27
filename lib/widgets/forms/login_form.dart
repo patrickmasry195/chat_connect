@@ -1,12 +1,16 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
-import 'package:chat_connect/helpers/show_snack_bar.dart';
-import 'package:chat_connect/services/firebase_auth_services.dart';
+import 'package:chat_connect/pages/chats_page.dart';
+import 'package:chat_connect/pages/sign_up_page.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
+import 'package:chat_connect/widgets/forgot_password.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
 import 'package:chat_connect/widgets/sign_up_suggestion.dart';
 import 'package:flutter/material.dart';
+
+import '../../helpers/show_snack_bar.dart';
+import '../../services/authentication.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -19,16 +23,33 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  String? _errorMessage;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
+  }
+
+  void _loginUser() async {
+    String res = await AuthService().loginUser(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    if (res == "success") {
+      setState(() {
+        isLoading = true;
+      });
+      Navigator.pushNamed(context, ChatsPage.id);
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      showSnackBar(context, res, Colors.red);
+    }
   }
 
   @override
@@ -44,7 +65,7 @@ class _LoginFormState extends State<LoginForm> {
               height: 40,
             ),
             CustomEmailField(
-              emailController: _emailController,
+              emailController: emailController,
               emailValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -58,7 +79,7 @@ class _LoginFormState extends State<LoginForm> {
               height: 20,
             ),
             CustomPasswordField(
-              passwordController: _passwordController,
+              passwordController: passwordController,
               passwordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
@@ -73,7 +94,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             CustomButton(
               onPressed: () {
-                _login();
+                _loginUser();
               },
               textAlign: TextAlign.center,
               fontSize: 24,
@@ -84,36 +105,18 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(
               height: 20,
             ),
+            const ForgotPassword(),
+            const SizedBox(
+              height: 10,
+            ),
             SignUpSuggestion(
               onTap: () {
-                Navigator.pushNamed(context, 'SignUpPage');
+                Navigator.pushNamed(context, SignUpPage.id);
               },
             ),
           ],
         ),
       ),
     );
-  }
-
-  void _login() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
-
-    if (_formKey.currentState!.validate()) {
-      String? error =
-          await _authService.signInWithEmailPassword(email, password);
-
-      if (error == null) {
-        Navigator.pushNamed(context, 'ChatsPage');
-        showSnackBar(context, 'Signed in successfully', Colors.green);
-      } else {
-        setState(() {
-          _errorMessage = error;
-        });
-        showSnackBar(context, _errorMessage!, Colors.red);
-      }
-    } else {
-      showSnackBar(context, 'Please fill the required fields', Colors.red);
-    }
   }
 }

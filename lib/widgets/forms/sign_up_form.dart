@@ -1,16 +1,14 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
-import 'package:chat_connect/models/user_model.dart';
-import 'package:chat_connect/services/firebase_auth_services.dart';
+import 'package:chat_connect/pages/chats_page.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/input_fields/custom_confirm_password_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_email_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_name_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../helpers/show_snack_bar.dart';
+import '../../services/authentication.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
@@ -23,24 +21,42 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String? _errorMessage;
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
-    _userNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
     super.dispose();
+  }
+
+  void _signUpUser() async {
+    String res = await AuthService().signUpUser(
+      email: emailController.text,
+      password: passwordController.text,
+      name: nameController.text,
+    );
+    if (res == "success") {
+      setState(() {
+        isLoading = true;
+      });
+      Navigator.pushNamed(context, ChatsPage.id);
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      showSnackBar(context, res, Colors.red);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomBackGroundForm(
-      height: 420,
+      height: 500,
       width: 350,
       child: Form(
         key: _formKey,
@@ -48,14 +64,14 @@ class _SignUpFormState extends State<SignUpForm> {
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 10,
+            vertical: 20,
           ),
           children: [
             const SizedBox(
               height: 20,
             ),
             CustomNameField(
-              nameController: _userNameController,
+              nameController: nameController,
               nameValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your name';
@@ -69,7 +85,7 @@ class _SignUpFormState extends State<SignUpForm> {
               height: 20,
             ),
             CustomEmailField(
-              emailController: _emailController,
+              emailController: emailController,
               emailValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
@@ -83,7 +99,7 @@ class _SignUpFormState extends State<SignUpForm> {
               height: 20,
             ),
             CustomPasswordField(
-              passwordController: _passwordController,
+              passwordController: passwordController,
               passwordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a password';
@@ -100,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
               confirmPasswordValidator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a password';
-                } else if (value != _passwordController.text) {
+                } else if (value != passwordController.text) {
                   return 'Passwords don\'t match';
                 }
                 return null;
@@ -111,7 +127,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             CustomButton(
               onPressed: () {
-                _register();
+                _signUpUser();
               },
               textAlign: TextAlign.center,
               text: 'Create an account',
@@ -123,33 +139,5 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
       ),
     );
-  }
-
-  void _register() async {
-    String email = _emailController.text.trim();
-    String password = _passwordController.text.trim();
-    String userName = _userNameController.text.trim();
-
-    if (_formKey.currentState!.validate()) {
-      UserModel newUser = UserModel(
-        email: email,
-        password: password,
-        userName: userName,
-      );
-
-      User? user = await _authService.signUpWithEmailPassword(newUser);
-
-      if (user != null) {
-        Navigator.pushNamed(context, 'ChatsPage');
-        showSnackBar(context, 'Registered successfully', Colors.green);
-      } else {
-        setState(() {
-          _errorMessage = 'Registration failed. Please try again.';
-        });
-        showSnackBar(context, _errorMessage!, Colors.red);
-      }
-    } else {
-      showSnackBar(context, 'Please fill in all required fields', Colors.red);
-    }
   }
 }

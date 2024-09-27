@@ -1,12 +1,19 @@
 import 'package:chat_connect/helpers/constants.dart';
+import 'package:chat_connect/widgets/buttons/google_auth_button.dart';
 import 'package:chat_connect/widgets/forms/login_form.dart';
 import 'package:chat_connect/widgets/components/my_separator.dart';
-import 'package:chat_connect/widgets/buttons/social_auth_buttons.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  static String id = 'LoginPage';
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +49,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            SocialAuthButtons(
-              facebookAuthOnPressed: () {
-                Navigator.pushNamed(context, 'ChatsPage');
-              },
+            GoogleAuthButton(
               googleAuthOnPressed: () {},
             ),
           ],
