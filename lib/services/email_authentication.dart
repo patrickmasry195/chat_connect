@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final googleSignIn = GoogleSignIn();
 
   Future<String> signUpUser(
       {required String email,
@@ -47,7 +51,36 @@ class AuthService {
     return res;
   }
 
+  signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+        final AuthCredential authCredential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
+        await _auth.signInWithCredential(authCredential);
+      }
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+    }
+  }
+
   Future<void> signOut() async {
-    await _auth.signOut();
+    try {
+      await FirebaseAuth.instance.signOut();
+
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.signOut();
+        log("Google user signed out.");
+      }
+
+      log("User signed out from Firebase.");
+    } catch (e) {
+      log("Error signing out: $e");
+    }
   }
 }

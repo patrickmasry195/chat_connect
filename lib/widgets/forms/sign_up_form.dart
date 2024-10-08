@@ -8,7 +8,7 @@ import 'package:chat_connect/widgets/input_fields/custom_name_field.dart';
 import 'package:chat_connect/widgets/input_fields/custom_password_field.dart';
 import 'package:flutter/material.dart';
 import '../../helpers/show_snack_bar.dart';
-import '../../services/authentication.dart';
+import '../../services/email_authentication.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({

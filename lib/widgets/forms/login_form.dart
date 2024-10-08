@@ -10,7 +10,7 @@ import 'package:chat_connect/widgets/sign_up_suggestion.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/show_snack_bar.dart';
-import '../../services/authentication.dart';
+import '../../services/email_authentication.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
