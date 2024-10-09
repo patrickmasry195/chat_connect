@@ -52,6 +52,7 @@ class FetchUserData {
 
       String? email = user.email;
       String? name = user.displayName;
+      String? profileImageUrl;
 
       Map<String, dynamic>? firestoreData = await getUserDataFromFirestore();
 
@@ -61,8 +62,14 @@ class FetchUserData {
         name = firestoreData['name'];
       }
 
+      if (firestoreData != null &&
+          firestoreData.containsKey('profileImageUrl')) {
+        profileImageUrl = firestoreData['profileImageUrl'];
+      }
+
       log("User Email: ${email ?? 'No Email'}");
       log("User Name: ${name ?? 'No Name'}");
+      log("Profile Image URL: ${profileImageUrl ?? 'No Profile Image'}");
     } catch (e) {
       log("Error displaying user data: $e");
     }

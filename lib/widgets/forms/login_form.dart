@@ -10,7 +10,7 @@ import 'package:chat_connect/widgets/sign_up_suggestion.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/show_snack_bar.dart';
-import '../../services/email_authentication.dart';
+import '../../services/authentication.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -92,16 +92,22 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(
               height: 20,
             ),
-            CustomButton(
-              onPressed: () {
-                _loginUser();
-              },
-              textAlign: TextAlign.center,
-              fontSize: 24,
-              text: 'Login',
-              height: 50,
-              width: 260,
-            ),
+            isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                  )
+                : CustomButton(
+                    onPressed: () {
+                      _loginUser();
+                    },
+                    textAlign: TextAlign.center,
+                    fontSize: 24,
+                    text: 'Login',
+                    height: 50,
+                    width: 260,
+                  ),
             const SizedBox(
               height: 20,
             ),

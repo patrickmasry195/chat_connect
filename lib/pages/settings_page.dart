@@ -1,7 +1,8 @@
+import 'dart:developer';
 import 'package:chat_connect/bloc/app_theme_bloc.dart';
 import 'package:chat_connect/helpers/constants.dart';
 import 'package:chat_connect/helpers/my_show_dialog.dart';
-import 'package:chat_connect/services/email_authentication.dart';
+import 'package:chat_connect/services/authentication.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
 import 'package:chat_connect/widgets/list_views/drawer_list_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   final UpdateUser _updateUser = UpdateUser();
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -35,8 +37,8 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future<Map<String, dynamic>> fetchUserDataFromBothSources() async {
-    await fetchUserData.displayUserData();
     User? user = FirebaseAuth.instance.currentUser;
+
     String? email = user?.email;
     String? name = user?.displayName;
 
@@ -49,10 +51,13 @@ class _SettingsPageState extends State<SettingsPage> {
       name = firestoreData['name'];
     }
 
+    String profileImageUrl =
+        firestoreData?['profileImageUrl'] ?? user?.photoURL ?? '';
+
     return {
       'name': name ?? 'No Name',
       'email': email ?? 'No Email',
-      'photoURL': user?.photoURL ?? null,
+      'profileImageUrl': profileImageUrl,
     };
   }
 
@@ -104,7 +109,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Map<String, dynamic> userData = snapshot.data!;
             String name = userData['name'];
             String email = userData['email'];
-            String? photoURL = userData['photoURL'];
+            String? photoURL = userData['profileImageUrl'];
 
             return SingleChildScrollView(
               child: Padding(
@@ -113,18 +118,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      backgroundImage: photoURL != null
+                      backgroundImage: (photoURL != null && photoURL.isNotEmpty)
                           ? NetworkImage(photoURL)
                           : const AssetImage("assets/def_avatar.png")
                               as ImageProvider,
                       maxRadius: 40,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
-                      ),
+                      onBackgroundImageError: (exception, stackTrace) {
+                        log("Error loading profile image: $exception");
+                      },
                     ),
                     const SizedBox(height: 30),
                     TextButton(
@@ -223,7 +224,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // Handle account deletion
+                                  },
                                   child: const Text(
                                     "Delete",
                                     style: TextStyle(
@@ -249,17 +252,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     const SizedBox(height: 180),
-                    CustomButton(
-                      onPressed: () async {
-                        await AuthService().signOut();
-                        Navigator.pushNamed(context, GetStartedPage.id);
-                      },
-                      text: 'Logout',
-                      fontSize: 25,
-                      height: 50,
-                      width: 150,
-                      textAlign: TextAlign.center,
-                    ),
+                    isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.black,
+                            ),
+                          )
+                        : CustomButton(
+                            onPressed: () async {
+                              await AuthService().signOut();
+                              Navigator.pushNamed(context, GetStartedPage.id);
+                            },
+                            text: 'Logout',
+                            fontSize: 25,
+                            height: 50,
+                            width: 150,
+                            textAlign: TextAlign.center,
+                          ),
                   ],
                 ),
               ),
