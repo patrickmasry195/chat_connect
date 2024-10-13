@@ -1,5 +1,5 @@
 import 'package:chat_connect/helpers/constants.dart';
-import 'package:chat_connect/pages/chats_page.dart';
+import 'package:chat_connect/pages/home_page.dart';
 import 'package:chat_connect/widgets/buttons/google_auth_button.dart';
 import 'package:chat_connect/widgets/forms/login_form.dart';
 import 'package:chat_connect/widgets/components/my_separator.dart';
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             GoogleAuthButton(
               googleAuthOnPressed: () async {
                 await AuthService().signInWithGoogle();
-                Navigator.pushNamed(context, ChatsPage.id);
+                Navigator.pushNamed(context, HomePage.id);
               },
             ),
           ],

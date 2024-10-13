@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:chat_connect/pages/chats_page.dart';
+import 'package:chat_connect/pages/home_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:chat_connect/helpers/regex_validator.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
@@ -95,7 +95,7 @@ class _SignUpFormState extends State<SignUpForm> {
       );
 
       if (res == "success") {
-        Navigator.pushReplacementNamed(context, ChatsPage.id);
+        Navigator.pushReplacementNamed(context, HomePage.id);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(res)),

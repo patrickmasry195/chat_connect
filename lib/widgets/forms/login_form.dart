@@ -1,5 +1,5 @@
 import 'package:chat_connect/helpers/regex_validator.dart';
-import 'package:chat_connect/pages/chats_page.dart';
+import 'package:chat_connect/pages/home_page.dart';
 import 'package:chat_connect/pages/sign_up_page.dart';
 import 'package:chat_connect/widgets/components/custom_background_form.dart';
 import 'package:chat_connect/widgets/buttons/custom_button.dart';
@@ -43,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
       setState(() {
         isLoading = true;
       });
-      Navigator.pushNamed(context, ChatsPage.id);
+      Navigator.pushNamed(context, HomePage.id);
     } else {
       setState(() {
         isLoading = false;

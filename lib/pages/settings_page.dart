@@ -224,8 +224,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () {
-                                    // Handle account deletion
+                                  onPressed: () async {
+                                    await AuthService().deleteUserAndData();
+                                    Navigator.pushNamed(
+                                        context, GetStartedPage.id);
                                   },
                                   child: const Text(
                                     "Delete",

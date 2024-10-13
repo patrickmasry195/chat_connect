@@ -4,15 +4,22 @@ import 'package:flutter/material.dart';
 class ChatInputField extends StatelessWidget {
   const ChatInputField({
     super.key,
+    this.controller,
+    this.onPressed,
   });
+
+  final TextEditingController? controller;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          width: 250,
+          width: 300,
           child: TextField(
+            controller: controller,
             cursorColor: kSecondaryColor,
             style: const TextStyle(color: Colors.black),
             decoration: InputDecoration(
@@ -34,19 +41,14 @@ class ChatInputField extends StatelessWidget {
             ),
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.mic,
-            size: 30,
-            color: kSecondaryColor,
-          ),
+        const Spacer(
+          flex: 2,
         ),
         SizedBox(
           height: 40,
           width: 40,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.zero,
               backgroundColor: kSecondaryColor,
@@ -59,6 +61,9 @@ class ChatInputField extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+        ),
+        const Spacer(
+          flex: 1,
         )
       ],
     );

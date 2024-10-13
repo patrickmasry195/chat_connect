@@ -7,9 +7,15 @@ class ChatTile extends StatefulWidget {
   const ChatTile({
     super.key,
     required this.onTap,
+    required this.peerName,
+    required this.lastMessage,
+    required this.lastMessageTime,
   });
 
   final void Function()? onTap;
+  final String peerName;
+  final String lastMessage;
+  final String lastMessageTime;
 
   @override
   State<ChatTile> createState() => _ChatTileState();
@@ -17,6 +23,7 @@ class ChatTile extends StatefulWidget {
 
 class _ChatTileState extends State<ChatTile> {
   bool isDarkMode = false;
+
   @override
   void initState() {
     isDarkMode = BlocProvider.of<AppThemeBloc>(context).state is AppDarkTheme;
@@ -35,25 +42,23 @@ class _ChatTileState extends State<ChatTile> {
           color: isDarkMode ? kChatTileDarkModeColor : kThirdColor,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               maxRadius: 30,
               backgroundImage: AssetImage(
                 'assets/avatar.jpg',
               ),
             ),
-            SizedBox(
-              width: 20,
-            ),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Maxwell Throne',
-                    style: TextStyle(
+                    widget.peerName,
+                    style: const TextStyle(
                       color: kSecondaryColor,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -62,10 +67,10 @@ class _ChatTileState extends State<ChatTile> {
                   SizedBox(
                     width: 200,
                     child: Text(
-                      'Let\'s grab lunch tomorrow! I\'ve missed our chats.hbvfbhbvhfvbdbvdvbdhkj',
+                      widget.lastMessage,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: kHintColor,
                         fontSize: 15,
                       ),
@@ -75,10 +80,10 @@ class _ChatTileState extends State<ChatTile> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40, left: 15),
+              padding: const EdgeInsets.only(top: 40, left: 15),
               child: Text(
-                '12:10pm',
-                style: TextStyle(
+                widget.lastMessageTime,
+                style: const TextStyle(
                   color: kSecondaryColor,
                 ),
               ),

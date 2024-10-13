@@ -1,7 +1,7 @@
 import 'package:chat_connect/bloc/app_theme_bloc.dart';
 import 'package:chat_connect/firebase_options.dart';
 import 'package:chat_connect/pages/chat_page.dart';
-import 'package:chat_connect/pages/chats_page.dart';
+import 'package:chat_connect/pages/home_page.dart';
 import 'package:chat_connect/pages/get_started_page.dart';
 import 'package:chat_connect/pages/login_page.dart';
 import 'package:chat_connect/pages/sign_up_page.dart';
@@ -45,7 +45,7 @@ class ChatConnect extends StatelessWidget {
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return const ChatsPage();
+                  return const HomePage();
                 } else {
                   return const GetStartedPage();
                 }
@@ -55,7 +55,7 @@ class ChatConnect extends StatelessWidget {
               GetStartedPage.id: (context) => const GetStartedPage(),
               LoginPage.id: (context) => const LoginPage(),
               SignUpPage.id: (context) => const SignUpPage(),
-              ChatsPage.id: (context) => const ChatsPage(),
+              HomePage.id: (context) => const HomePage(),
               SettingsPage.id: (context) => const SettingsPage(),
               ChatPage.id: (context) => const ChatPage(),
             },

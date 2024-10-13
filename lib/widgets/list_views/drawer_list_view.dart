@@ -4,7 +4,6 @@ import 'package:chat_connect/widgets/custom_user_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
 import '../../services/fetch_user_data.dart';
 
 class DrawerListView extends StatefulWidget {
@@ -28,16 +27,15 @@ class _DrawerListViewState extends State<DrawerListView> {
     String? email = user?.email;
     String? name = user?.displayName;
 
-    // Fetch user data from Firestore
     Map<String, dynamic>? firestoreData =
-    await fetchUserData.getUserDataFromFirestore();
+        await fetchUserData.getUserDataFromFirestore();
 
-    // Use Firestore name if FirebaseAuth name is null
-    if (name == null && firestoreData != null && firestoreData.containsKey('name')) {
+    if (name == null &&
+        firestoreData != null &&
+        firestoreData.containsKey('name')) {
       name = firestoreData['name'];
     }
 
-    // Get profile image URL from Firestore if available
     String? photoURL = firestoreData?['profileImageUrl'] ?? user?.photoURL;
 
     return {
@@ -81,7 +79,8 @@ class _DrawerListViewState extends State<DrawerListView> {
                     CircleAvatar(
                       backgroundImage: (photoURL != null && photoURL.isNotEmpty)
                           ? NetworkImage(photoURL)
-                          : const AssetImage("assets/def_avatar.png") as ImageProvider,
+                          : const AssetImage("assets/def_avatar.png")
+                              as ImageProvider,
                       maxRadius: 30,
                     ),
                     const SizedBox(height: 10),
@@ -103,7 +102,7 @@ class _DrawerListViewState extends State<DrawerListView> {
                   size: 35,
                 ),
                 title: const Text(
-                  'Chats',
+                  'Home',
                   style: TextStyle(
                     color: kSecondaryColor,
                     fontSize: 25,

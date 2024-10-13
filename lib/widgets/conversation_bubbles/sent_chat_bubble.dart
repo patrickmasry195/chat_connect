@@ -1,15 +1,18 @@
 import 'package:chat_connect/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
-class ChatBubble extends StatelessWidget {
-  const ChatBubble({
+class SentChatBubble extends StatelessWidget {
+  const SentChatBubble({
     super.key,
+    required this.message,
   });
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Container(
         padding:
             const EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
@@ -25,12 +28,12 @@ class ChatBubble extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: const Offset(0, 3), 
+                offset: const Offset(0, 3),
               ),
             ]),
-        child: const Text(
-          'Hello, buddy',
-          style: TextStyle(color: Colors.white),
+        child: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );

@@ -1,15 +1,18 @@
 import 'package:chat_connect/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
-class ChatBubbleForFriend extends StatelessWidget {
-  const ChatBubbleForFriend({
+class ReceivedChatBubble extends StatelessWidget {
+  const ReceivedChatBubble({
     super.key,
+    required this.message,
   });
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerRight,
+      alignment: Alignment.centerLeft,
       child: Container(
         padding:
             const EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
@@ -28,9 +31,9 @@ class ChatBubbleForFriend extends StatelessWidget {
                 offset: const Offset(0, 3),
               ),
             ]),
-        child: const Text(
-          'Hi, how are you',
-          style: TextStyle(color: Colors.white),
+        child: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
