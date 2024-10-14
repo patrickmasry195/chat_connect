@@ -52,14 +52,13 @@ Forget Password Dialog             |  Delete Account Warning
 :-------------------------:|:-------------------------:
 ![forget_password](https://github.com/user-attachments/assets/5fe111ce-02cb-4e45-abff-90ecc82566d4) | ![warning](https://github.com/user-attachments/assets/56df1a10-dbf8-46cc-982d-a75d879fdc35)
 
-Add People             |  Video
-:-------------------------:|:-------------------------:
-![addpeople](https://github.com/user-attachments/assets/2ae16aab-b5ed-4ce8-a117-522a5441e8fe) | <video src="https://github.com/user-attachments/assets/37304c9f-3c1a-46ab-a02c-6150e51c7181" width="989" height="2048" controls autoplay></video>
+Add People             
+:-------------------------:
+![addpeople](https://github.com/user-attachments/assets/2ae16aab-b5ed-4ce8-a117-522a5441e8fe)  
 
-
-
-
-
+Video
+:-------------------------:
+<video src="https://github.com/user-attachments/assets/37304c9f-3c1a-46ab-a02c-6150e51c7181" width="989" height="2048" controls autoplay></video>
 
 
 
