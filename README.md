@@ -61,7 +61,8 @@ Forget Password Dialog             |  Delete Account Warning
 
 Add People                                                                                      
 :-------------------------: |                                                                   
-<img src="https://github.com/user-attachments/assets/2ae16aab-b5ed-4ce8-a117-522a5441e8fe" alt="addpeople" width="400" height="1024"> |
+![addpeople](https://github.com/user-attachments/assets/bffd8c1f-84a4-4639-bc18-e1b2391f6a34) |
+
 
 
 
