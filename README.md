@@ -1,16 +1,35 @@
-# chat_connect
+# ChatConnect App
+- A one-to-one chat app using Flutter and Firebase
 
-A new Flutter project.
+## Features
+- Real-Time Messaging
+- User Authentication
+- Profile Management
 
-## Getting Started
+## Packages used
+- Firebase Auth
+- Firebase Core
+- Firebase Storage
+- Cloud Firestore
+- Google Fonts
+- Google SignIn
+- Image Picker
+- Material Symbols Icons
+- Modal Progress HUD
+- Shared Preferences
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+Get Started Page Light             |  Get Started Page Dark
+:-------------------------:|:-------------------------:
+![get_started (2)](https://github.com/user-attachments/assets/090c08bf-0c83-430e-a8ba-08d7bc211a9e)  |  ![getstarteddark](https://github.com/user-attachments/assets/fb9817d6-d26b-4829-8d29-cd4668ff28ab)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Login Page Light             |  Login Page Dark
+:-------------------------:|:-------------------------:
+![login](https://github.com/user-attachments/assets/d8e367ab-0ad1-4641-b62d-345f5c237ae9)  |  ![logindark](https://github.com/user-attachments/assets/a1634118-767a-4757-9551-bc1daaafe100)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
+
+
