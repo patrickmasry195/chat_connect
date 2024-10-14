@@ -56,6 +56,20 @@ Add People             |  Video
 :-------------------------:|:-------------------------:
 ![addpeople](https://github.com/user-attachments/assets/2ae16aab-b5ed-4ce8-a117-522a5441e8fe) | <video src="https://github.com/user-attachments/assets/37304c9f-3c1a-46ab-a02c-6150e51c7181" controls autoplay></video>
 
+<table>
+  <tr>
+    <th style="text-align: center;">Add People</th>
+    <th style="text-align: center;">Video</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="https://github.com/user-attachments/assets/2ae16aab-b5ed-4ce8-a117-522a5441e8fe" alt="Add People" width="300" height="300"/>
+    </td>
+    <td style="text-align: center;">
+      <video src="https://github.com/user-attachments/assets/37304c9f-3c1a-46ab-a02c-6150e51c7181" width="300" height="300" controls autoplay></video>
+    </td>
+  </tr>
+</table>
 
 
 
